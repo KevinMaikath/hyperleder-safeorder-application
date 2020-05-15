@@ -47,7 +47,7 @@ export class MainComponent implements OnInit {
   }
 
   async onConsole() {
-    const result = await this.productService.getProductsFromCategory(categoriesEnum.HAMBURGERS).pipe(take(1)).toPromise();
+    const result = await this.productService.getProductsFromCategory(categoriesEnum.SUPPLEMENTS).pipe(take(1)).toPromise();
     console.log(result);
   }
 
