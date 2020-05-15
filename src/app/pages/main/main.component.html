@@ -1,2 +1,26 @@
-<p>main works!</p>
-<router-outlet></router-outlet>
+<div class="nav"></div>
+<div class="main">
+  <div class="left-side-menu" [class.open-left]="leftMenuOpen">
+    <div *ngIf="leftMenuOpen" class="left-menu-content">
+      <button>Hola</button>
+      <button>Hola</button>
+      <button>Hola</button>
+      <button>Hola</button>
+    </div>
+  </div>
+
+  <div class="middle-div" [style.width]="middleWidth">ahsbdhabsjdhksjbaskjdbajhsdbjahsd
+    ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd
+    ahsbdhabsjdhksjbaskjdbajhs ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd
+    ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd
+    ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsdahsbdhabsjdhksjbaskjdbajhsdbjahsd
+    ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd vdbjahsd
+    ahsbdhabsjdhksjbaskjdbajhsdbjahsd ahsbdhabsjdhksjbaskjdbajhsdbjahsd
+  </div>
+
+  <div class="right-side-menu" [class.open-right]="rightMenuOpen"></div>
+</div>
+<button (click)="toggleLeftMenu()">Left</button>
+<button (click)="toggleRightMenu()">Right</button>
+{{leftMenuOpen}}
+{{rightMenuOpen}}
