@@ -30,12 +30,6 @@
   width: 100%;
 }
 
-.nav {
-  background-color: blue;
-  width: 100%;
-  height: 50px;
-}
-
 .left-menu-content {
   display: flex;
   flex-direction: column;
@@ -46,3 +40,63 @@
   background-color: aquamarine;
   transition: all 0.5s;
 }
+
+
+.nav {
+  background-color: #3c6f7f;
+  padding: 15px 25px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.page-title {
+  font-family: "Dubai Light";
+  font-weight: bold;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: white;
+
+  padding: 0;
+  margin: 0 25px;
+}
+
+.side-menu-btn {
+  height: 30px;
+  width: 30px;
+
+  background-size: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: invert(100%);
+
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#left-menu-btn {
+  background-image: url("src/assets/icons/menu-icon.svg");
+}
+
+#left-menu-btn:hover {
+  background-image: url("src/assets/icons/menu-icon-inverted.svg");
+  background-color: black;
+  filter: invert(100%);
+}
+
+#right-menu-btn {
+  position: absolute;
+  right: 25px;
+
+  background-image: url("src/assets/icons/shopping-cart-icon.svg");
+}
+
+#right-menu-btn:hover {
+  background-image: url("src/assets/icons/shopping-cart-icon-inverted.svg");
+  background-color: black;
+  filter: invert(100%);
+}
+

@@ -1,4 +1,8 @@
-<div class="nav"></div>
+<div class="nav">
+  <div id="left-menu-btn" class="side-menu-btn" (click)="toggleLeftMenu()"></div>
+  <p class="page-title">Hyperledger SafeOrder</p>
+  <div id="right-menu-btn" class="side-menu-btn" (click)="toggleRightMenu()"></div>
+</div>
 <div class="main">
   <div class="left-side-menu" [class.open-left]="leftMenuOpen">
     <div *ngIf="leftMenuOpen" class="left-menu-content">
