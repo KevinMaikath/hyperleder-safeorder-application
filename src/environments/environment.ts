@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyCQJm7b5gmtlYeNeSOXb0VrEpWousA9MDg",
+    authDomain: "hyperledger-safeorder.firebaseapp.com",
+    databaseURL: "https://hyperledger-safeorder.firebaseio.com",
+    projectId: "hyperledger-safeorder",
+    storageBucket: "hyperledger-safeorder.appspot.com",
+    messagingSenderId: "72490780842",
+    appId: "1:72490780842:web:edf43c01fa210f3ea3a8d3"
+  }
 };
 
 /*
