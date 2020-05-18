@@ -6,10 +6,18 @@
 <div class="main">
   <div class="left-side-menu" [class.open-left]="leftMenuOpen">
     <div *ngIf="leftMenuOpen" class="left-menu-content">
-      <button>Hola</button>
-      <button>Hola</button>
-      <button>Hola</button>
-      <button>Hola</button>
+      <div class="left-menu-btn">
+        <div id="hamburger-icon" class="category-icon"></div>
+        <p>Hamburgers</p>
+      </div>
+      <div class="left-menu-btn">
+        <div id="supplement-icon" class="category-icon"></div>
+        <p>Supplements</p>
+      </div>
+      <div class="left-menu-btn">
+        <div id="beverage-icon" class="category-icon"></div>
+        <p>Beverages</p>
+      </div>
     </div>
   </div>
 
@@ -19,7 +27,3 @@
 
   <div class="right-side-menu" [class.open-right]="rightMenuOpen"></div>
 </div>
-<button (click)="toggleLeftMenu()">Left</button>
-<button (click)="toggleRightMenu()">Right</button>
-{{leftMenuOpen}}
-{{rightMenuOpen}}
