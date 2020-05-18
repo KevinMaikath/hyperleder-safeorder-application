@@ -1,7 +1,7 @@
 <div class="nav">
-  <div id="left-menu-btn" class="side-menu-btn" (click)="toggleLeftMenu()"></div>
+  <div id="left-side-btn" class="side-menu-btn" (click)="toggleLeftMenu()"></div>
   <p class="page-title">Hyperledger SafeOrder</p>
-  <div id="right-menu-btn" class="side-menu-btn" (click)="toggleRightMenu()"></div>
+  <div id="right-side-btn" class="side-menu-btn" (click)="toggleRightMenu()"></div>
 </div>
 <div class="main">
   <div class="left-side-menu" [class.open-left]="leftMenuOpen">
@@ -22,7 +22,21 @@
   </div>
 
   <div class="middle-div" [style.width]="middleWidth">
-    <button (click)="onConsole()">PUSH</button>
+    <div class="product-card" *ngFor="let product of currentProducts">
+      <p class="card-header">{{ product.name }}</p>
+      <div class="card-content">
+        <div class="product-img"
+             [style.background-image]="'url(' + product.imgURL + ')'"></div>
+        <p class="product-info"><strong>Ingredients:</strong> {{ displayProductIngredients(product) }}</p>
+      </div>
+      <div class="card-bottom">
+        <p class="card-header bottom">Price: {{ product.price }}€</p>
+        <div class="add-btn">
+          <div class="add-icon"></div>
+          <p>Add to cart</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="right-side-menu" [class.open-right]="rightMenuOpen"></div>
