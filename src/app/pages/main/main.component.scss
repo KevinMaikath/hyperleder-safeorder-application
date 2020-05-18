@@ -323,9 +323,17 @@
       border: 1px solid #8a8a8a;
     }
 
+    &.reset:hover {
+      background-color: #8a8a8a;
+    }
+
     &.confirm {
       background-color: #8bb930;
       border: 1px solid #709626;
+    }
+
+    &.confirm:hover {
+      background-color: #7ca82c;
     }
 
     .icon {
