@@ -10,7 +10,7 @@ import {take} from "rxjs/operators";
 })
 export class MainComponent implements OnInit {
 
-  leftMenuOpen = false;
+  leftMenuOpen = true;
   rightMenuOpen = false;
 
   product: ProductModel;
@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
   get middleWidth() {
     let fix = 0;
     if (this.leftMenuOpen) {
-      fix += 300;
+      fix += 250;
     }
     if (this.rightMenuOpen) {
       fix += 300;

@@ -1,7 +1,13 @@
+* {
+  font-family: Dubai;
+}
+
 .left-side-menu {
-  height: 100%;
+  height: calc(100% - 2px);
   width: 0;
   transition: all 0.5s;
+  background-color: #3c6f7f;
+  border-top: 2px solid white;
 }
 
 .right-side-menu {
@@ -14,8 +20,8 @@
 }
 
 .open-left {
-  width: 300px;
-  background-color: orange;
+  width: 250px;
+  max-width: 20%;
 }
 
 .open-right {
@@ -25,7 +31,7 @@
 
 .main {
   position: relative;
-  height: 70%;
+  height: calc(100% - 74px);
   display: flex;
   width: 100%;
 }
@@ -37,10 +43,8 @@
 
 .middle-div {
   height: 100%;
-  background-color: aquamarine;
   transition: all 0.5s;
 }
-
 
 .nav {
   background-color: #3c6f7f;
@@ -75,6 +79,8 @@
   padding: 5px;
   border: 1px solid black;
   border-radius: 5px;
+
+  transition: all 0.2s;
 }
 
 #left-menu-btn {
@@ -98,5 +104,62 @@
   background-image: url("src/assets/icons/shopping-cart-icon-inverted.svg");
   background-color: black;
   filter: invert(100%);
+}
+
+.left-menu-btn {
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.2s;
+
+  p {
+    color: white;
+    margin: 0 0 0 20px;
+  }
+
+  .category-icon {
+    height: 25px;
+    width: 25px;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: invert(100%);
+  }
+
+  #hamburger-icon {
+    background-image: url("src/assets/icons/hamburger-icon.svg");
+  }
+
+  #supplement-icon {
+    background-image: url("src/assets/icons/supplement-icon.svg");
+  }
+
+  #beverage-icon {
+    background-image: url("src/assets/icons/beverage-icon.svg");
+  }
+}
+
+.left-menu-btn:hover {
+  background-color: white;
+  border-left: 5px solid #3c6f7f;
+
+  p {
+    color: #3c6f7f;
+  }
+
+  #hamburger-icon {
+    background-image: url("src/assets/icons/hamburger-icon-inverted.svg");
+  }
+
+  #supplement-icon {
+    background-image: url("src/assets/icons/supplement-icon-inverted.svg");
+  }
+
+  #beverage-icon {
+    background-image: url("src/assets/icons/beverage-icon-inverted.svg");
+  }
 }
 
