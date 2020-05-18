@@ -3,8 +3,10 @@
   <p class="page-title">Hyperledger SafeOrder</p>
   <div id="right-side-btn" class="side-menu-btn" (click)="toggleRightMenu()"></div>
 </div>
+
 <div class="main">
-  <div class="left-side-menu" [class.open-left]="leftMenuOpen">
+
+  <div class="side-menu left" [class.open-left]="leftMenuOpen">
     <div *ngIf="leftMenuOpen" class="left-menu-content">
       <div class="left-menu-btn">
         <div id="hamburger-icon" class="category-icon"></div>
@@ -39,5 +41,39 @@
     </div>
   </div>
 
-  <div class="right-side-menu" [class.open-right]="rightMenuOpen"></div>
+  <div class="side-menu right" [class.open-right]="rightMenuOpen">
+    <div class="right-side-content" *ngIf="rightMenuOpen">
+      <p class="cart-title">Your shopping cart:</p>
+      <div class="separator top"></div>
+      <div class="cart-item">
+        <p>1x &nbsp; Chicken Burger</p>
+        <p>5€</p>
+      </div>
+      <div class="cart-item">
+        <p>1x &nbsp; Chicken Burger</p>
+        <p>5€</p>
+      </div>
+      <div class="cart-item">
+        <p>1x &nbsp; Chicken Burger</p>
+        <p>5€</p>
+      </div>
+      <div class="cart-item">
+        <p>1x &nbsp; Chicken Burger</p>
+        <p>5€</p>
+      </div>
+      <div class="separator bottom"></div>
+      <p class="cart-title bottom">Total: 20€</p>
+    </div>
+
+    <div class="cart-btn-div" *ngIf="showCartButtons">
+      <div class="cart-btn reset">
+        <div class="icon reset"></div>
+        <p>Reset</p>
+      </div>
+      <div class="cart-btn confirm">
+        <div class="icon confirm"></div>
+        <p>Confirm</p>
+      </div>
+    </div>
+  </div>
 </div>

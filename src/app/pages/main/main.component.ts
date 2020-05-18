@@ -11,7 +11,8 @@ import {take} from "rxjs/operators";
 export class MainComponent implements OnInit {
 
   leftMenuOpen = true;
-  rightMenuOpen = false;
+  rightMenuOpen = true;
+  showCartButtons = true;
 
   currentProducts: ProductModel[];
 
@@ -44,6 +45,13 @@ export class MainComponent implements OnInit {
 
   toggleRightMenu() {
     this.rightMenuOpen = !this.rightMenuOpen;
+    if (this.rightMenuOpen) {
+      setTimeout(() => {
+        this.showCartButtons = true;
+      }, 500);
+    } else {
+      this.showCartButtons = false;
+    }
   }
 
   displayProductIngredients(product: ProductModel): string {

@@ -2,36 +2,37 @@
   font-family: Dubai;
 }
 
-.left-side-menu {
-  height: calc(100% - 2px);
+.side-menu {
   width: 0;
   transition: all 0.5s;
   background-color: #3c6f7f;
   border-top: 2px solid white;
-}
+  height: calc(100% - 2px);
 
-.right-side-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 0;
-  transition: all 0.5s;
+  &.left {
+  }
+
+  &.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+  }
 }
 
 .open-left {
-  width: 250px;
+  width: 225px;
   max-width: 20%;
 }
 
 .open-right {
-  width: 300px;
-  background-color: green;
+  width: 325px;
+  max-width: 25%;
 }
 
 .main {
   position: relative;
-  height: calc(100% - 74px);
+  height: calc(100% - 64px);
   display: flex;
   width: 100%;
 }
@@ -43,63 +44,64 @@
 
 .nav {
   background-color: #3c6f7f;
-  padding: 15px 25px;
+  padding: 10px 25px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
-}
 
-.page-title {
-  font-family: "Dubai Light";
-  font-weight: bold;
-  font-size: 26px;
-  letter-spacing: 1px;
-  color: white;
+  .page-title {
+    font-family: "Dubai Light";
+    font-weight: bold;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: white;
 
-  padding: 0;
-  margin: 0 25px;
-}
+    padding: 0;
+    margin: 0 25px;
+  }
 
-.side-menu-btn {
-  height: 30px;
-  width: 30px;
+  .side-menu-btn {
+    height: 30px;
+    width: 30px;
 
-  background-size: 30px;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: invert(100%);
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: invert(100%);
 
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
 
-  transition: all 0.2s;
-  cursor: pointer;
-}
+    transition: all 0.2s;
+    cursor: pointer;
+  }
 
-#left-side-btn {
-  background-image: url("src/assets/icons/menu-icon.svg");
-}
+  #left-side-btn {
+    background-image: url("src/assets/icons/menu-icon.svg");
+  }
 
-#left-side-btn:hover {
-  background-image: url("src/assets/icons/menu-icon-inverted.svg");
-  background-color: black;
-  filter: invert(100%);
-}
+  #left-side-btn:hover {
+    background-image: url("src/assets/icons/menu-icon-inverted.svg");
+    background-color: black;
+    filter: invert(100%);
+  }
 
-#right-side-btn {
-  position: absolute;
-  right: 25px;
+  #right-side-btn {
+    position: absolute;
+    right: 25px;
 
-  background-image: url("src/assets/icons/shopping-cart-icon.svg");
-}
+    background-image: url("src/assets/icons/shopping-cart-icon.svg");
+  }
 
-#right-side-btn:hover {
-  background-image: url("src/assets/icons/shopping-cart-icon-inverted.svg");
-  background-color: black;
-  filter: invert(100%);
+  #right-side-btn:hover {
+    background-image: url("src/assets/icons/shopping-cart-icon-inverted.svg");
+    background-color: black;
+    filter: invert(100%);
+  }
+
 }
 
 .left-menu-btn {
@@ -233,6 +235,7 @@
     align-items: center;
     justify-content: space-evenly;
     cursor: pointer;
+    transition: all 0.2s;
 
     p {
       margin: 0;
@@ -249,4 +252,98 @@
     }
   }
 
+  .add-btn:hover {
+    background-color: #7ca82c;
+  }
+
 }
+
+.right-side-content {
+  padding: 20px 15px;
+
+  .cart-title {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+
+    &.bottom {
+      margin-top: 10px;
+    }
+  }
+
+  .separator {
+    width: 80%;
+    height: 1px;
+    background-color: white;
+
+    &.top {
+      margin-bottom: 15px;
+    }
+
+    &.bottom {
+      width: 90%;
+      margin-top: 15px;
+    }
+  }
+
+  .cart-item {
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.cart-btn-div {
+  display: flex;
+  justify-content: center;
+
+  .cart-btn {
+    height: 35px;
+    width: 95px;
+    margin: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    p {
+      color: white;
+      margin: 0;
+    }
+
+    &.reset {
+      background-color: #969696;
+      border: 1px solid #8a8a8a;
+    }
+
+    &.confirm {
+      background-color: #8bb930;
+      border: 1px solid #709626;
+    }
+
+    .icon {
+      height: 15px;
+      width: 15px;
+      background-size: cover;
+      background-position: center;
+      filter: invert(100%);
+
+      &.reset {
+        background-image: url("src/assets/icons/refresh-icon.svg");
+      }
+
+      &.confirm {
+        background-image: url("src/assets/icons/confirm-icon.svg");
+      }
+    }
+  }
+
+}
+
