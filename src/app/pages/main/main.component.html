@@ -8,15 +8,15 @@
 
   <div class="side-menu left" [class.open-left]="leftMenuOpen">
     <div *ngIf="leftMenuOpen" class="left-menu-content">
-      <div class="left-menu-btn">
+      <div class="left-menu-btn" (click)="onSelectCategory(categoriesEnum.HAMBURGERS)">
         <div id="hamburger-icon" class="category-icon"></div>
         <p>Hamburgers</p>
       </div>
-      <div class="left-menu-btn">
+      <div class="left-menu-btn" (click)="onSelectCategory(categoriesEnum.SUPPLEMENTS)">
         <div id="supplement-icon" class="category-icon"></div>
         <p>Supplements</p>
       </div>
-      <div class="left-menu-btn">
+      <div class="left-menu-btn" (click)="onSelectCategory(categoriesEnum.BEVERAGES)">
         <div id="beverage-icon" class="category-icon"></div>
         <p>Beverages</p>
       </div>
@@ -33,7 +33,7 @@
       </div>
       <div class="card-bottom">
         <p class="card-header bottom">Price: {{ product.price }}€</p>
-        <div class="add-btn">
+        <div class="add-btn" (click)="onAddProduct(product)">
           <div class="add-icon"></div>
           <p>Add to cart</p>
         </div>
@@ -45,32 +45,20 @@
     <div class="right-side-content" *ngIf="rightMenuOpen">
       <p class="cart-title">Your shopping cart:</p>
       <div class="separator top"></div>
-      <div class="cart-item">
-        <p>1x &nbsp; Chicken Burger</p>
-        <p>5€</p>
-      </div>
-      <div class="cart-item">
-        <p>1x &nbsp; Chicken Burger</p>
-        <p>5€</p>
-      </div>
-      <div class="cart-item">
-        <p>1x &nbsp; Chicken Burger</p>
-        <p>5€</p>
-      </div>
-      <div class="cart-item">
-        <p>1x &nbsp; Chicken Burger</p>
-        <p>5€</p>
+      <div class="cart-item" *ngFor="let item of shoppingCart.items">
+        <p>{{ item.quantity }}x &nbsp; {{ item.name }}</p>
+        <p>{{ item.price }}€</p>
       </div>
       <div class="separator bottom"></div>
-      <p class="cart-title bottom">Total: 20€</p>
+      <p class="cart-title bottom">Total: {{ cartTotalPrice }}€</p>
     </div>
 
     <div class="cart-btn-div" *ngIf="showCartButtons">
-      <div class="cart-btn reset">
+      <div class="cart-btn reset" (click)="onReset()">
         <div class="icon reset"></div>
         <p>Reset</p>
       </div>
-      <div class="cart-btn confirm">
+      <div class="cart-btn confirm" (click)="onConfirm()">
         <div class="icon confirm"></div>
         <p>Confirm</p>
       </div>

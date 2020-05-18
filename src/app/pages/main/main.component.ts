@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {categoriesEnum, ProductService} from "../../services/product.service";
 import {ProductModel} from "../../models/product.model";
 import {take} from "rxjs/operators";
+import {ShoppingCartModel} from "../../models/shoppingCart.model";
+import {CartItemModel} from "../../models/cartItem.model";
 
 @Component({
   selector: 'app-main',
@@ -15,11 +17,17 @@ export class MainComponent implements OnInit {
   showCartButtons = true;
 
   currentProducts: ProductModel[];
+  categoriesEnum;
+
+  shoppingCart = new ShoppingCartModel();
 
   constructor(private productService: ProductService) {
   }
 
   async ngOnInit() {
+    // necessary to be used in HTML
+    this.categoriesEnum = categoriesEnum;
+
     this.currentProducts = await this.productService.getProductsFromCategory(categoriesEnum.HAMBURGERS)
       .pipe(take(1))
       .toPromise();
@@ -38,9 +46,6 @@ export class MainComponent implements OnInit {
 
   toggleLeftMenu() {
     this.leftMenuOpen = !this.leftMenuOpen;
-    if (this.leftMenuOpen) {
-
-    }
   }
 
   toggleRightMenu() {
@@ -58,19 +63,33 @@ export class MainComponent implements OnInit {
     return product.ingredients.join(', ');
   }
 
-  async onConsole() {
-    const result = await this.productService.getProductsFromCategory(categoriesEnum.SUPPLEMENTS).pipe(take(1)).toPromise();
-    console.log(result);
+  async onSelectCategory(category: categoriesEnum) {
+    this.currentProducts = await this.productService.getProductsFromCategory(category).pipe(take(1)).toPromise();
   }
 
-  // setIngredients() {
-  //   this.product.ingredients = this.ingredients.split(',');
-  // }
+  onAddProduct(product: ProductModel) {
+    let item = new CartItemModel();
+    item.ID = product.ID;
+    item.name = product.name;
+    item.price = product.price;
+    item.quantity = 1;
+    this.shoppingCart.items.push(item);
+  }
 
-  // async onPush() {
-  //   this.setIngredients();
-  //   this.product.ID = await this.productService.generatePushID();
-  //   await this.productService.pushProduct(this.product);
-  // }
+  get cartTotalPrice(): number {
+    let total = 0;
+    this.shoppingCart.items.forEach(item => {
+      total += item.price;
+    });
+    return total;
+  }
+
+  onReset() {
+    this.shoppingCart.items = [];
+  }
+
+  onConfirm() {
+    // TODO
+  }
 
 }
