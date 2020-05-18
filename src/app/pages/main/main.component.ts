@@ -13,15 +13,15 @@ export class MainComponent implements OnInit {
   leftMenuOpen = true;
   rightMenuOpen = false;
 
-  product: ProductModel;
-  ingredients: string;
+  currentProducts: ProductModel[];
 
   constructor(private productService: ProductService) {
   }
 
-  ngOnInit(): void {
-    this.product = new ProductModel();
-    this.ingredients = '';
+  async ngOnInit() {
+    this.currentProducts = await this.productService.getProductsFromCategory(categoriesEnum.HAMBURGERS)
+      .pipe(take(1))
+      .toPromise();
   }
 
   get middleWidth() {
@@ -44,6 +44,10 @@ export class MainComponent implements OnInit {
 
   toggleRightMenu() {
     this.rightMenuOpen = !this.rightMenuOpen;
+  }
+
+  displayProductIngredients(product: ProductModel): string {
+    return product.ingredients.join(', ');
   }
 
   async onConsole() {
