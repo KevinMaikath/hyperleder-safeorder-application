@@ -68,18 +68,18 @@ export class MainComponent implements OnInit {
   }
 
   onAddProduct(product: ProductModel) {
-    let item = new CartItemModel();
-    item.ID = product.ID;
-    item.name = product.name;
-    item.price = product.price;
-    item.quantity = 1;
-    this.shoppingCart.items.push(item);
+    const item = this.shoppingCart.items.find(item => item.ID === product.ID);
+    if (item) {
+      item.quantity += 1;
+    } else {
+      this.shoppingCart.items.push(new CartItemModel(product.ID, product.name, product.price));
+    }
   }
 
   get cartTotalPrice(): number {
     let total = 0;
     this.shoppingCart.items.forEach(item => {
-      total += item.price;
+      total += item.price * item.quantity;
     });
     return total;
   }
