@@ -4,10 +4,16 @@ export class ShoppingCartModel {
 
   ID: string;
   items: CartItemModel[];
-  // date, etc.?
+  date: string;
+  shopID: string;
+  buyerID: string;
+
 
   constructor() {
     this.ID = '';
     this.items = [];
+    this.date = '';
+    this.shopID = '';
+    this.buyerID = '';
   }
 }
