@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {ShoppingCartModel} from "../models/shoppingCart.model";
 import {Gateway, Wallets} from "fabric-network";
 
-const fs = require("fs");
-const yaml = require("js-yaml");
+import * as fs from "fs";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +25,9 @@ export class HyperledgerService {
     const userName = 'isabella';
 
     // Load connection profile; will be used to locate a gateway
-    let connectionProfile = yaml.safeLoad(fs.readFileSync('../organization/magnetocorp/gateway/connection-org2.yaml', 'utf8'));
+    // let connectionProfile = yaml.safeLoad(fs.readFileSync('../organization/magnetocorp/gateway/connection-org2.yaml', 'utf8'));
+    const connectionProfileJson = (await fs.promises.readFile('../organization/magnetocorp/gateway/connection-org2.json')).toString();
+    const connectionProfile = JSON.parse(connectionProfileJson);
 
     const gateway = new Gateway();
 
