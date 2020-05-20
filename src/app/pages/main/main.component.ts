@@ -4,7 +4,9 @@ import {ProductModel} from "../../models/product.model";
 import {take} from "rxjs/operators";
 import {ShoppingCartModel} from "../../models/shoppingCart.model";
 import {CartItemModel} from "../../models/cartItem.model";
-import {HyperledgerService} from "../../services/hyperledger.service";
+
+// import {HyperledgerService} from "../../services/hyperledger.service";
+import Hyperledger from "../../services/hyperledger.js";
 
 @Component({
   selector: 'app-main',
@@ -23,7 +25,8 @@ export class MainComponent implements OnInit {
   shoppingCart = new ShoppingCartModel();
 
   constructor(private productService: ProductService,
-              private hyperledgerService: HyperledgerService) {
+              // private hyperledgerService: HyperledgerService
+  ) {
   }
 
   async ngOnInit() {
@@ -91,7 +94,7 @@ export class MainComponent implements OnInit {
   }
 
   onConfirm() {
-    this.hyperledgerService.registerOrder(this.shoppingCart);
+    Hyperledger.registerOrder(this.shoppingCart);
   }
 
 }

@@ -1,13 +1,14 @@
-import {Injectable} from '@angular/core';
-import {ShoppingCartModel} from "../models/shoppingCart.model";
-import {Gateway, Wallets} from "fabric-network";
+/**
+ import {Injectable} from '@angular/core';
+ import {ShoppingCartModel} from "../models/shoppingCart.model";
+ import {Gateway, Wallets} from "fabric-network";
 
-import * as fs from "fs";
+ import * as fs from "fs";
 
-@Injectable({
+ @Injectable({
   providedIn: 'root'
 })
-export class HyperledgerService {
+ export class HyperledgerService {
 
   constructor() {
   }
@@ -78,3 +79,4 @@ export class HyperledgerService {
     return num;
   }
 }
+ */
