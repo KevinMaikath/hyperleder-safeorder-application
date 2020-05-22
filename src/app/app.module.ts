@@ -10,6 +10,8 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {FormsModule} from "@angular/forms";
 
+import {HttpClientModule} from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
