@@ -1,0 +1,70 @@
+.middle-div {
+  flex-direction: column;
+}
+
+.search-div {
+  padding: 10px 15px;
+  margin: 0 15px;
+  border-bottom: 1px solid #3c6f7f;
+}
+
+.order-list {
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.no-search-msg {
+  padding: 25px;
+  font-size: 18px;
+}
+
+.order-card {
+  height: 225px;
+  width: 250px;
+  margin: 20px;
+  border: 2px solid #4891a1;
+  background-color: #4891a1;
+  border-radius: 10px;
+
+  .card-header {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 0;
+    margin: 0;
+  }
+
+  .card-content {
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    .order-info {
+      height: 110px;
+      margin: 0;
+      padding: 5px 10px 0;
+      text-align: start;
+    }
+  }
+
+  .bottom-btn {
+    width: 100%;
+    padding-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-right: 15px;
+
+      p {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

@@ -49,10 +49,10 @@ export class MainComponent implements OnInit {
   get middleWidth() {
     let fix = 0;
     if (this.leftMenuOpen) {
-      fix += 250;
+      fix += 225;
     }
     if (this.rightMenuOpen) {
-      fix += 300;
+      fix += 325;
     }
     return `calc(100% - ${fix}px)`;
   }

@@ -21,6 +21,7 @@ import {OrderRegisterDialogComponent} from './components/order-register-dialog/o
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 import { OrderInfoDialogComponent } from './components/order-info-dialog/order-info-dialog.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
     MatProgressSpinnerModule,
     MatDialogModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
