@@ -1,0 +1,39 @@
+<div class="nav">
+  <div id="left-side-btn" class="side-menu-btn" (click)="toggleLeftMenu()"></div>
+  <p class="page-title">Hyperledger SafeOrder</p>
+</div>
+
+<div class="main">
+
+  <div class="side-menu left" [class.open-left]="leftMenuOpen">
+    <div *ngIf="leftMenuOpen" class="left-menu-content">
+
+      <div class="nav-buttons">
+        <div class="left-menu-btn nav" (click)="navigateTo('')">
+          <p>New Order</p>
+        </div>
+        <div class="left-menu-btn nav selected" (click)="navigateTo('/list')">
+          <p>Order List</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="middle-div" [style.width]="middleWidth">
+    <!--    <div class="product-card" *ngFor="let product of currentProducts">-->
+    <!--      <p class="card-header">{{ product.name }}</p>-->
+    <!--      <div class="card-content">-->
+    <!--        <div class="product-img"-->
+    <!--             [style.background-image]="'url(' + product.imgURL + ')'"></div>-->
+    <!--        <p class="product-info"><strong>Ingredients:</strong> {{ displayProductIngredients(product) }}</p>-->
+    <!--      </div>-->
+    <!--      <div class="card-bottom">-->
+    <!--        <p class="card-header bottom">Price: {{ product.price }}€</p>-->
+    <!--        <div class="add-btn" (click)="onAddProduct(product)">-->
+    <!--          <div class="add-icon"></div>-->
+    <!--          <p>Add to cart</p>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+</div>

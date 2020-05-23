@@ -20,6 +20,7 @@ import {OrderConfirmDialogComponent} from './components/order-confirm-dialog/ord
 import {OrderRegisterDialogComponent} from './components/order-register-dialog/order-register-dialog.component';
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 import { OrderInfoDialogComponent } from './components/order-info-dialog/order-info-dialog.component';
+import { OrderListComponent } from './pages/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OrderInfoDialogComponent } from './components/order-info-dialog/order-i
     OrderConfirmDialogComponent,
     OrderRegisterDialogComponent,
     CustomSnackbarComponent,
-    OrderInfoDialogComponent
+    OrderInfoDialogComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,

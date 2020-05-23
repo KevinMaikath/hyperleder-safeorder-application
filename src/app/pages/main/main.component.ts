@@ -12,6 +12,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-snackbar.component";
 import {OrderInfoDialogComponent} from "../../components/order-info-dialog/order-info-dialog.component";
 import {OrderModel} from "../../models/order.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main',
@@ -32,7 +33,8 @@ export class MainComponent implements OnInit {
   constructor(private productService: ProductService,
               private hyperledgerService: HyperledgerService,
               private matDialog: MatDialog,
-              private matSnackBar: MatSnackBar) {
+              private matSnackBar: MatSnackBar,
+              private router: Router) {
   }
 
   async ngOnInit() {
@@ -106,6 +108,10 @@ export class MainComponent implements OnInit {
         this.registerOrder();
       }
     });
+  }
+
+  navigateTo(route: string) {
+    this.router.navigateByUrl(route);
   }
 
   registerOrder() {
