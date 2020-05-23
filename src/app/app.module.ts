@@ -15,13 +15,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import {OrderConfirmDialogComponent} from './order-confirm-dialog/order-confirm-dialog.component';
+import {OrderConfirmDialogComponent} from './components/order-confirm-dialog/order-confirm-dialog.component';
+import { OrderRegisterDialogComponent } from './components/order-register-dialog/order-register-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    OrderConfirmDialogComponent
+    OrderConfirmDialogComponent,
+    OrderRegisterDialogComponent
   ],
   imports: [
     BrowserModule,

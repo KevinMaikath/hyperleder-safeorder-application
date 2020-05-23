@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {ShoppingCartModel} from "../models/shoppingCart.model";
+import {ShoppingCartModel} from "../../models/shoppingCart.model";
 
 interface dataStructure {
   shoppingCart: ShoppingCartModel,
@@ -29,11 +29,11 @@ export class OrderConfirmDialogComponent implements OnInit {
   }
 
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   onConfirm() {
-
+    this.dialogRef.close(true);
   }
 
 }

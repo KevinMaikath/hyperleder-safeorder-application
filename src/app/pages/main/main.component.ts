@@ -5,14 +5,15 @@ import {take} from "rxjs/operators";
 import {ShoppingCartModel} from "../../models/shoppingCart.model";
 import {CartItemModel} from "../../models/cartItem.model";
 import {HyperledgerService} from "../../services/hyperledger.service";
-import {OrderConfirmDialogComponent} from "../../order-confirm-dialog/order-confirm-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {OrderConfirmDialogComponent} from "../../components/order-confirm-dialog/order-confirm-dialog.component";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {OrderRegisterDialogComponent} from "../../components/order-register-dialog/order-register-dialog.component";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  entryComponents: [OrderConfirmDialogComponent]
+  entryComponents: [OrderConfirmDialogComponent, OrderRegisterDialogComponent]
 })
 export class MainComponent implements OnInit {
 
@@ -95,8 +96,21 @@ export class MainComponent implements OnInit {
   }
 
   onConfirm() {
+    let dialogRef = this.openConfirmDialog();
+    dialogRef.afterClosed().subscribe(orderConfirmed => {
+      if (orderConfirmed) {
+        this.registerOrder();
+      }
+    });
+  }
+
+  registerOrder() {
     // this.hyperledgerService.registerOrder(this.shoppingCart);
-    let dialogRef = this.matDialog.open(OrderConfirmDialogComponent, {
+    this.openRegisterDialog();
+  }
+
+  openConfirmDialog(): MatDialogRef<any> {
+    return this.matDialog.open(OrderConfirmDialogComponent, {
       data: {
         shoppingCart: this.shoppingCart,
         subtotal: this.cartTotalPrice,
@@ -110,4 +124,7 @@ export class MainComponent implements OnInit {
     });
   }
 
+  openRegisterDialog(): MatDialogRef<any> {
+    return this.matDialog.open(OrderRegisterDialogComponent);
+  }
 }
