@@ -45,10 +45,17 @@
     <div class="right-side-content" *ngIf="rightMenuOpen">
       <p class="cart-title">Your shopping cart:</p>
       <div class="separator top"></div>
-      <div class="cart-item" *ngFor="let item of shoppingCart.items">
-        <p>{{ item.quantity }}x &nbsp; {{ item.name }}</p>
-        <p>{{ item.price * item.quantity }}€</p>
+
+      <div *ngIf="shoppingCart.items.length > 0">
+        <div class="cart-item" *ngFor="let item of shoppingCart.items">
+          <p>{{ item.quantity }}x &nbsp; {{ item.name }}</p>
+          <p>{{ item.price * item.quantity }}€</p>
+        </div>
       </div>
+      <div *ngIf="shoppingCart.items.length < 1">
+        <p class="no-items-alert">No selected items</p>
+      </div>
+
       <div class="separator bottom"></div>
       <p class="cart-title bottom">Total: {{ cartTotalPrice }}€</p>
     </div>

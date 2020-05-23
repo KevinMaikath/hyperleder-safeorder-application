@@ -97,9 +97,16 @@ export class MainComponent implements OnInit {
   onConfirm() {
     // this.hyperledgerService.registerOrder(this.shoppingCart);
     let dialogRef = this.matDialog.open(OrderConfirmDialogComponent, {
-      data: {shoppingCart: this.shoppingCart},
-      height: '70%',
-      minWidth: '50%'
+      data: {
+        shoppingCart: this.shoppingCart,
+        subtotal: this.cartTotalPrice,
+        taxes: this.productService.ORDER_ADDITIONAL_TAXES
+      },
+      maxHeight: '80%',
+      width: '25%',
+      minWidth: '400px',
+      autoFocus: false,
+      disableClose: true
     });
   }
 

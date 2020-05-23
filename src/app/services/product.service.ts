@@ -15,6 +15,7 @@ export enum categoriesEnum {
 export class ProductService {
 
   PRODUCTS_REFERENCE_ROOT_URL = '/products';
+  ORDER_ADDITIONAL_TAXES = 10;
 
   constructor(private db: AngularFireDatabase) {
   }
@@ -25,12 +26,4 @@ export class ProductService {
         ref.orderByChild('category').equalTo(categoryName)
       ).valueChanges();
   }
-
-  // generatePushID(): string {
-  //   return this.db.createPushId();
-  // }
-  //
-  // pushProduct(product: ProductModel) {
-  //   return this.db.object(this.PRODUCTS_REFERENCE_ROOT_URL + '/' + product.ID).set(product);
-  // }
 }

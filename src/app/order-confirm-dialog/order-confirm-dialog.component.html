@@ -1,3 +1,31 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <p>Confirm your order</p>
+  </div>
 
+  <div class="dialog-items">
 
-<button mat-flat-button color="primary" (click)="onCancel()">Cancel</button>
+    <div *ngIf="data.shoppingCart.items.length > 0">
+      <div class="cart-item" *ngFor="let item of data.shoppingCart.items">
+        <p>{{ item.quantity }}x &nbsp; {{ item.name }}</p>
+        <p>{{ item.price * item.quantity }}€</p>
+      </div>
+    </div>
+
+    <div *ngIf="data.shoppingCart.items.length < 1">
+      <p>No selected items</p>
+    </div>
+  </div>
+
+  <div class="cart-subtotal">
+    <p>Subtotal: {{ data.subtotal }}€</p>
+    <p>Taxes: {{ data.taxes }}%</p>
+  </div>
+
+  <p class="cart-total">Total: {{ totalPrice }}€</p>
+
+  <div class="dialog-buttons">
+    <button mat-flat-button (click)="onCancel()">Cancel</button>
+    <button mat-flat-button class="confirm-button" (click)="onConfirm()">Confirm</button>
+  </div>
+</div>
