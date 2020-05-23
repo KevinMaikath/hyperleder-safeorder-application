@@ -30,6 +30,7 @@
         Refresh
         <mat-icon>refresh</mat-icon>
       </button>
+      <mat-spinner *ngIf="loading" mode="indeterminate" diameter="25"></mat-spinner>
     </div>
 
     <div class="no-search-msg" *ngIf="!alreadySearched">
@@ -45,7 +46,7 @@
           <div class="order-info">
             <p><strong>Date:</strong> {{ order.date }}</p>
             <p><strong>Status:</strong> {{ order.status }}</p>
-            <p><strong>Total:</strong> {{ order.totalPrice }}</p>
+            <p><strong>Total:</strong> {{ order.totalPrice }}€</p>
           </div>
         </div>
         <div class="bottom-btn">

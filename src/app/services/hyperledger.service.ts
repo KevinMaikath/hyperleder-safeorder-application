@@ -14,14 +14,14 @@ export class HyperledgerService {
   constructor(private http: HttpClient) {
   }
 
-  queryOrder() {
-
-  }
-
   async registerOrder(cart: ShoppingCartModel): Promise<Object> {
     const order = this.initializeOrder(cart);
 
     return this.http.post(this.API_URL + '/registerOrder', {order}).pipe(take(1)).toPromise();
+  }
+
+  async queryOrderByUser() {
+    return this.http.post(this.API_URL + '/queryOrderByUser', {userID: '11111'}).pipe(take(1)).toPromise();
   }
 
   private initializeOrder(cart) {

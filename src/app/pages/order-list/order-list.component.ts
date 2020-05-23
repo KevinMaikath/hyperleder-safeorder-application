@@ -4,6 +4,9 @@ import {Router} from "@angular/router";
 import {CartItemModel} from "../../models/cartItem.model";
 import {MatDialog} from "@angular/material/dialog";
 import {OrderInfoDialogComponent} from "../../components/order-info-dialog/order-info-dialog.component";
+import {HyperledgerService} from "../../services/hyperledger.service";
+import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-snackbar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-order-list',
@@ -14,14 +17,21 @@ export class OrderListComponent implements OnInit {
 
   leftMenuOpen = true;
   alreadySearched = false;
+  loading = false;
 
   orderList: OrderModel[];
 
   constructor(private router: Router,
-              private matDialog: MatDialog) {
+              private matDialog: MatDialog,
+              private hyperledger: HyperledgerService,
+              private matSnackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
+    this.initOrderList();
+  }
+
+  initOrderList() {
     const item = {
       ID: 'itemID',
       name: 'itemName name',
@@ -59,7 +69,16 @@ export class OrderListComponent implements OnInit {
   }
 
   onSearch() {
+    this.orderList = [];
     this.alreadySearched = true;
+    this.loading = true;
+    this.hyperledger.queryOrderByUser().then((res) => {
+      this.loading = false;
+      this.initOrderList();
+    }).catch((res) => {
+      this.loading = false;
+      this.showErrorSnack();
+    })
   }
 
   onShowOrderInfo(order: OrderModel) {
@@ -69,5 +88,21 @@ export class OrderListComponent implements OnInit {
       width: '25%',
       autoFocus: false
     });
+  }
+
+  showErrorSnack() {
+    let snack = this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      data: {
+        success: false,
+        message: 'An error occurred',
+        buttonMsg: 'Log'
+      }
+    });
+    snack.onAction().subscribe(() => {
+      console.log('ACTION');
+    })
   }
 }

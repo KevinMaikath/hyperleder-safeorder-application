@@ -6,6 +6,9 @@
   padding: 10px 15px;
   margin: 0 15px;
   border-bottom: 1px solid #3c6f7f;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .order-list {
@@ -67,4 +70,10 @@
       }
     }
   }
+}
+
+mat-spinner {
+  margin-left: 15px;
+  height: 50px;
+  width: 50px;
 }
