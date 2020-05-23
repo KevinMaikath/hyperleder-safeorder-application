@@ -1,0 +1,6 @@
+<div class="container" [class.error]="!data.success">
+  <p>{{ data.message }}</p>
+  <button mat-flat-button (click)="onAction()" [class.error]="!data.success">
+    {{ data.buttonMsg | uppercase }}
+  </button>
+</div>

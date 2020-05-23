@@ -18,14 +18,10 @@ export class HyperledgerService {
 
   }
 
-  async registerOrder(cart: ShoppingCartModel) {
+  async registerOrder(cart: ShoppingCartModel): Promise<Object> {
     const order = this.initializeOrder(cart);
 
-    this.http.post(this.API_URL + '/registerOrder', {order}).pipe(take(1)).toPromise().then((res) => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    });
+    return this.http.post(this.API_URL + '/registerOrder', {order}).pipe(take(1)).toPromise();
   }
 
   private initializeOrder(cart) {

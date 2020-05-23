@@ -15,15 +15,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {OrderConfirmDialogComponent} from './components/order-confirm-dialog/order-confirm-dialog.component';
-import { OrderRegisterDialogComponent } from './components/order-register-dialog/order-register-dialog.component';
+import {OrderRegisterDialogComponent} from './components/order-register-dialog/order-register-dialog.component';
+import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     OrderConfirmDialogComponent,
-    OrderRegisterDialogComponent
+    OrderRegisterDialogComponent,
+    CustomSnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { OrderRegisterDialogComponent } from './components/order-register-dialog
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

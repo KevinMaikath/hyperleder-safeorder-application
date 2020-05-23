@@ -8,12 +8,14 @@ import {HyperledgerService} from "../../services/hyperledger.service";
 import {OrderConfirmDialogComponent} from "../../components/order-confirm-dialog/order-confirm-dialog.component";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {OrderRegisterDialogComponent} from "../../components/order-register-dialog/order-register-dialog.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-snackbar.component";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  entryComponents: [OrderConfirmDialogComponent, OrderRegisterDialogComponent]
+  entryComponents: [OrderConfirmDialogComponent, OrderRegisterDialogComponent, CustomSnackbarComponent]
 })
 export class MainComponent implements OnInit {
 
@@ -28,7 +30,8 @@ export class MainComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private hyperledgerService: HyperledgerService,
-              private matDialog: MatDialog) {
+              private matDialog: MatDialog,
+              private matSnackBar: MatSnackBar) {
   }
 
   async ngOnInit() {
@@ -96,17 +99,27 @@ export class MainComponent implements OnInit {
   }
 
   onConfirm() {
-    let dialogRef = this.openConfirmDialog();
-    dialogRef.afterClosed().subscribe(orderConfirmed => {
-      if (orderConfirmed) {
-        this.registerOrder();
-      }
-    });
+    // let dialogRef = this.openConfirmDialog();
+    // dialogRef.afterClosed().subscribe(orderConfirmed => {
+    //   if (orderConfirmed) {
+    //     this.registerOrder();
+    //   }
+    // });
+
+    // this.showSuccessSnack();
+    this.showErrorSnack();
   }
 
   registerOrder() {
-    // this.hyperledgerService.registerOrder(this.shoppingCart);
+    // this.hyperledgerService.registerOrder(this.shoppingCart).then(res => {
+    //   console.log(res);
+    // }).catch(res => {
+    //   console.log(res);
+    // });
     this.openRegisterDialog();
+    setTimeout(() => {
+      this.showSuccessSnack();
+    }, 3000);
   }
 
   openConfirmDialog(): MatDialogRef<any> {
@@ -126,5 +139,37 @@ export class MainComponent implements OnInit {
 
   openRegisterDialog(): MatDialogRef<any> {
     return this.matDialog.open(OrderRegisterDialogComponent);
+  }
+
+  showSuccessSnack() {
+    let snack = this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      data: {
+        success: true,
+        message: 'Order successfully registered!',
+        buttonMsg: 'Show'
+      }
+    });
+    snack.onAction().subscribe(() => {
+      console.log('ACTION');
+    })
+  }
+
+  showErrorSnack() {
+    let snack = this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
+      duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      data: {
+        success: false,
+        message: 'An error occurred',
+        buttonMsg: 'Log'
+      }
+    });
+    snack.onAction().subscribe(() => {
+      console.log('ACTION');
+    })
   }
 }
