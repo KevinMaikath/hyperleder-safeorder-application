@@ -28,28 +28,6 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initOrderList();
-  }
-
-  initOrderList() {
-    const item = {
-      ID: 'itemID',
-      name: 'itemName name',
-      price: 10,
-      quantity: 2
-    };
-    const order = {
-      key: '12345:44444',
-      ID: '12345',
-      shopID: '44444',
-      buyerID: '11111',
-      date: 'Sat, 23 May 2020 17:08:13 GMT',
-      items: [item, item],
-      totalPrice: 22,
-      status: 'pending'
-    };
-
-    this.orderList = [order, order, order];
   }
 
   get middleWidth() {
@@ -72,9 +50,9 @@ export class OrderListComponent implements OnInit {
     this.orderList = [];
     this.alreadySearched = true;
     this.loading = true;
-    this.hyperledger.queryOrderByUser().then((res) => {
+    this.hyperledger.queryOrderByUser().then((res: { orderList: OrderModel[] }) => {
       this.loading = false;
-      this.initOrderList();
+      this.orderList = res.orderList;
     }).catch((res) => {
       this.loading = false;
       this.showErrorSnack();
