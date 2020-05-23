@@ -5,11 +5,14 @@ import {take} from "rxjs/operators";
 import {ShoppingCartModel} from "../../models/shoppingCart.model";
 import {CartItemModel} from "../../models/cartItem.model";
 import {HyperledgerService} from "../../services/hyperledger.service";
+import {OrderConfirmDialogComponent} from "../../order-confirm-dialog/order-confirm-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  entryComponents: [OrderConfirmDialogComponent]
 })
 export class MainComponent implements OnInit {
 
@@ -23,7 +26,8 @@ export class MainComponent implements OnInit {
   shoppingCart = new ShoppingCartModel();
 
   constructor(private productService: ProductService,
-              private hyperledgerService: HyperledgerService) {
+              private hyperledgerService: HyperledgerService,
+              private matDialog: MatDialog) {
   }
 
   async ngOnInit() {
@@ -91,7 +95,12 @@ export class MainComponent implements OnInit {
   }
 
   onConfirm() {
-    this.hyperledgerService.registerOrder(this.shoppingCart);
+    // this.hyperledgerService.registerOrder(this.shoppingCart);
+    let dialogRef = this.matDialog.open(OrderConfirmDialogComponent, {
+      data: {shoppingCart: this.shoppingCart},
+      height: '70%',
+      minWidth: '50%'
+    });
   }
 
 }
