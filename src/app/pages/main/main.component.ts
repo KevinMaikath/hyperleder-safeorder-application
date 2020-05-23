@@ -10,12 +10,13 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {OrderRegisterDialogComponent} from "../../components/order-register-dialog/order-register-dialog.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-snackbar.component";
+import {OrderInfoDialogComponent} from "../../components/order-info-dialog/order-info-dialog.component";
+import {OrderModel} from "../../models/order.model";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
-  entryComponents: [OrderConfirmDialogComponent, OrderRegisterDialogComponent, CustomSnackbarComponent]
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
 
@@ -99,27 +100,23 @@ export class MainComponent implements OnInit {
   }
 
   onConfirm() {
-    // let dialogRef = this.openConfirmDialog();
-    // dialogRef.afterClosed().subscribe(orderConfirmed => {
-    //   if (orderConfirmed) {
-    //     this.registerOrder();
-    //   }
-    // });
-
-    // this.showSuccessSnack();
-    this.showErrorSnack();
+    let dialogRef = this.openConfirmDialog();
+    dialogRef.afterClosed().subscribe(orderConfirmed => {
+      if (orderConfirmed) {
+        this.registerOrder();
+      }
+    });
   }
 
   registerOrder() {
-    // this.hyperledgerService.registerOrder(this.shoppingCart).then(res => {
-    //   console.log(res);
-    // }).catch(res => {
-    //   console.log(res);
-    // });
+    this.hyperledgerService.registerOrder(this.shoppingCart).then((res: { order: OrderModel }) => {
+      console.log(res);
+      this.showSuccessSnack(res.order);
+    }).catch(res => {
+      console.log(res);
+      this.showErrorSnack();
+    });
     this.openRegisterDialog();
-    setTimeout(() => {
-      this.showSuccessSnack();
-    }, 3000);
   }
 
   openConfirmDialog(): MatDialogRef<any> {
@@ -141,7 +138,7 @@ export class MainComponent implements OnInit {
     return this.matDialog.open(OrderRegisterDialogComponent);
   }
 
-  showSuccessSnack() {
+  showSuccessSnack(order: OrderModel) {
     let snack = this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
       duration: 5000,
       verticalPosition: 'top',
@@ -153,7 +150,12 @@ export class MainComponent implements OnInit {
       }
     });
     snack.onAction().subscribe(() => {
-      console.log('ACTION');
+      this.matDialog.open(OrderInfoDialogComponent, {
+        data: order,
+        maxHeight: '80%',
+        width: '25%',
+        autoFocus: false
+      });
     })
   }
 

@@ -1,0 +1,33 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <p>Order information</p>
+  </div>
+
+  <div class="dialog-items">
+    <div class="info-pair">
+      <p><strong>ID:</strong> {{ data.ID }}</p>
+      <p><strong>Key:</strong> {{ data.key }}</p>
+    </div>
+    <div class="info-pair">
+      <p><strong>BuyerID:</strong> {{ data.buyerID }}</p>
+      <p><strong>ShopID:</strong> {{ data.shopID }}</p>
+    </div>
+    <p><strong>Date:</strong> {{ data.date }}</p>
+    <p><strong>Status:</strong> {{ data.status }}</p>
+  </div>
+
+  <p class="articles-separator">Articles:</p>
+
+  <div class="dialog-items articles">
+    <div class="cart-item" *ngFor="let item of data.items">
+      <p>{{ item.quantity }}x &nbsp; {{ item.name }}</p>
+      <p>{{ item.price * item.quantity }}€</p>
+    </div>
+  </div>
+
+  <p class="cart-total">Total: {{ data.totalPrice }}€</p>
+
+  <div class="dialog-buttons">
+    <button mat-flat-button (click)="onClose()">Close</button>
+  </div>
+</div>

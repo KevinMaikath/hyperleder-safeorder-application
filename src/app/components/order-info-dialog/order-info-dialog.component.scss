@@ -1,0 +1,23 @@
+button {
+  background-color: #dddddd;
+}
+
+.info-pair {
+  p {
+    display: inline;
+    margin-right: 15px;
+  }
+}
+
+.articles-separator {
+  border-top: 1px solid darkgrey;
+  font-weight: bold;
+  padding: 10px 0 0 10px;
+}
+
+.dialog-items {
+  &.articles {
+    padding-left: 20px;
+    padding-top: 5px;
+  }
+}

@@ -19,6 +19,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {OrderConfirmDialogComponent} from './components/order-confirm-dialog/order-confirm-dialog.component';
 import {OrderRegisterDialogComponent} from './components/order-register-dialog/order-register-dialog.component';
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
+import { OrderInfoDialogComponent } from './components/order-info-dialog/order-info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CustomSnackbarComponent } from './components/custom-snackbar/custom-sna
     MainComponent,
     OrderConfirmDialogComponent,
     OrderRegisterDialogComponent,
-    CustomSnackbarComponent
+    CustomSnackbarComponent,
+    OrderInfoDialogComponent
   ],
   imports: [
     BrowserModule,
