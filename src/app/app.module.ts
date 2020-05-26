@@ -22,6 +22,7 @@ import { CustomSnackbarComponent } from './components/custom-snackbar/custom-sna
 import { OrderInfoDialogComponent } from './components/order-info-dialog/order-info-dialog.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import {MatIconModule} from "@angular/material/icon";
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatIconModule} from "@angular/material/icon";
     OrderRegisterDialogComponent,
     CustomSnackbarComponent,
     OrderInfoDialogComponent,
-    OrderListComponent
+    OrderListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
