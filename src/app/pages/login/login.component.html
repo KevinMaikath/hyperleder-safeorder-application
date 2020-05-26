@@ -4,14 +4,14 @@
     <div class="login-icon"></div>
     <div class="input-div">
       <label for="username-input">Username</label>
-      <input id="username-input" type="text"/>
+      <input id="username-input" type="text" [(ngModel)]="credentials.username"/>
     </div>
     <div class="input-div">
       <label for="password-input">Password</label>
-      <input id="password-input" type="password"/>
+      <input id="password-input" type="password" [(ngModel)]="credentials.password"/>
     </div>
   </div>
   <div class="buttons">
-    <button mat-flat-button class="submit-btn">Submit</button>
+    <button mat-flat-button class="submit-btn" (click)="onSubmit()">Submit</button>
   </div>
 </div>
