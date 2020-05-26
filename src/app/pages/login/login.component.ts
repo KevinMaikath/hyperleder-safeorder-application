@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
     this.credentials = new LoginCredentialsModel();
   }
 
+  /**
+   * Submit the user credentials for authenticating through the AuthService.
+   */
   onSubmit() {
     this.authService.login(this.credentials).then((res: { token: string }) => {
       this.authService.saveToken(res.token);

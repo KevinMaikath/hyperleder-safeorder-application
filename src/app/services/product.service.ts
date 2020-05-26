@@ -20,6 +20,10 @@ export class ProductService {
   constructor(private db: AngularFireDatabase) {
   }
 
+  /**
+   * Get all the products from a given category.
+   * @param categoryName String denoting the name of the category.
+   */
   getProductsFromCategory(categoryName: categoriesEnum): Observable<ProductModel[]> {
     return this.db
       .list<ProductModel>(this.PRODUCTS_REFERENCE_ROOT_URL, ref =>

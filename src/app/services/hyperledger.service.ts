@@ -14,16 +14,28 @@ export class HyperledgerService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Register an order into the ledger.
+   * @param cart Cart to be transformed into an order and registered.
+   */
   async registerOrder(cart: ShoppingCartModel): Promise<Object> {
     const order = this.initializeOrder(cart);
 
     return this.http.post(this.API_URL + '/registerOrder', {order}).pipe(take(1)).toPromise();
   }
 
+  /**
+   * Query for a list of orders in the ledger, given a buyerID.
+   * (At the moment, the buyerID is fixed to 11111, but it should retrieve it from the AuthService in a future)
+   */
   async queryOrderByUser() {
-    return this.http.post(this.API_URL + '/queryOrderByUser', {userID: '11111'}).pipe(take(1)).toPromise();
+    return this.http.post(this.API_URL + '/queryOrderByUser', {buyerID: '11111'}).pipe(take(1)).toPromise();
   }
 
+  /**
+   * Initialize all the necessary attributes to transform a shopping cart into a correct order.
+   * @param cart Shopping cart to be initialized.
+   */
   private initializeOrder(cart) {
     cart.ID = this.generateID();
     cart.buyerID = '11111';
@@ -32,6 +44,9 @@ export class HyperledgerService {
     return cart;
   }
 
+  /**
+   * Generate a random 5 digits number as a string.
+   */
   private generateID() {
     let num = Math.floor(Math.random() * 100000).toString();
     if (num.length < 5) {

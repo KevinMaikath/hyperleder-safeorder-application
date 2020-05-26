@@ -7,6 +7,7 @@ import {OrderInfoDialogComponent} from "../../components/order-info-dialog/order
 import {HyperledgerService} from "../../services/hyperledger.service";
 import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-order-list',
@@ -24,12 +25,17 @@ export class OrderListComponent implements OnInit {
   constructor(private router: Router,
               private matDialog: MatDialog,
               private hyperledger: HyperledgerService,
-              private matSnackBar: MatSnackBar) {
+              private matSnackBar: MatSnackBar,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
   }
 
+  /**
+   * Calculate the width for the HTML middle div content.
+   * Depends on the side menus.
+   */
   get middleWidth() {
     let fix = 0;
     if (this.leftMenuOpen) {
@@ -46,6 +52,9 @@ export class OrderListComponent implements OnInit {
     this.router.navigateByUrl(route);
   }
 
+  /**
+   * Search the current user orders through the HypereldgerService.
+   */
   onSearch() {
     this.orderList = [];
     this.alreadySearched = true;
@@ -59,6 +68,10 @@ export class OrderListComponent implements OnInit {
     })
   }
 
+  /**
+   * Display a dialog with all the info from an order.
+   * @param order Order to be displayed.
+   */
   onShowOrderInfo(order: OrderModel) {
     this.matDialog.open(OrderInfoDialogComponent, {
       data: order,
@@ -82,5 +95,9 @@ export class OrderListComponent implements OnInit {
     snack.onAction().subscribe(() => {
       console.log('ACTION');
     })
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

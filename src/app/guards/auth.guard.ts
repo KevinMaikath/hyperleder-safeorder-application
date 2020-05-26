@@ -11,6 +11,10 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private auth: AuthService) {
   }
 
+  /**
+   * Only allow users that have already been successfully authenticated.
+   * @param route Activated Route Snapshot.
+   */
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     const isAuth = await this.auth.isAuthenticated();
     if (!isAuth) {

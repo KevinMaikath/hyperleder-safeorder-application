@@ -13,6 +13,7 @@ import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-s
 import {OrderInfoDialogComponent} from "../../components/order-info-dialog/order-info-dialog.component";
 import {OrderModel} from "../../models/order.model";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-main',
@@ -34,7 +35,8 @@ export class MainComponent implements OnInit {
               private hyperledgerService: HyperledgerService,
               private matDialog: MatDialog,
               private matSnackBar: MatSnackBar,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthService) {
   }
 
   async ngOnInit() {
@@ -46,6 +48,10 @@ export class MainComponent implements OnInit {
       .toPromise();
   }
 
+  /**
+   * Calculate the width for the HTML middle div content.
+   * Depends on the side menus.
+   */
   get middleWidth() {
     let fix = 0;
     if (this.leftMenuOpen) {
@@ -72,6 +78,10 @@ export class MainComponent implements OnInit {
     }
   }
 
+  /**
+   * Format an ingredients array to an unique string.
+   * @param product Product with a list of ingredients.
+   */
   displayProductIngredients(product: ProductModel): string {
     return product.ingredients.join(', ');
   }
@@ -80,6 +90,10 @@ export class MainComponent implements OnInit {
     this.currentProducts = await this.productService.getProductsFromCategory(category).pipe(take(1)).toPromise();
   }
 
+  /**
+   * Add a product to the shopping cart or increase its quantity by one.
+   * @param product Product to be added.
+   */
   onAddProduct(product: ProductModel) {
     const item = this.shoppingCart.items.find(item => item.ID === product.ID);
     if (item) {
@@ -89,6 +103,9 @@ export class MainComponent implements OnInit {
     }
   }
 
+  /**
+   * Calculate the shopping cart total price.
+   */
   get cartTotalPrice(): number {
     let total = 0;
     this.shoppingCart.items.forEach(item => {
@@ -97,10 +114,16 @@ export class MainComponent implements OnInit {
     return total;
   }
 
+  /**
+   * Reset the shopping cart.
+   */
   onReset() {
     this.shoppingCart.items = [];
   }
 
+  /**
+   * Open a confirmation dialog with all the shopping cart info.
+   */
   onConfirm() {
     let dialogRef = this.openConfirmDialog();
     dialogRef.afterClosed().subscribe(orderConfirmed => {
@@ -114,12 +137,13 @@ export class MainComponent implements OnInit {
     this.router.navigateByUrl(route);
   }
 
+  /**
+   * Register the shopping cart as an order through the HyperledgerService.
+   */
   registerOrder() {
     this.hyperledgerService.registerOrder(this.shoppingCart).then((res: { order: OrderModel }) => {
-      console.log(res);
       this.showSuccessSnack(res.order);
     }).catch(res => {
-      console.log(res);
       this.showErrorSnack();
     });
     this.openRegisterDialog();
@@ -179,5 +203,9 @@ export class MainComponent implements OnInit {
     snack.onAction().subscribe(() => {
       console.log('ACTION');
     })
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
