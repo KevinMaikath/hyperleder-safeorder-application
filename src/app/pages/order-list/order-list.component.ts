@@ -59,9 +59,9 @@ export class OrderListComponent implements OnInit {
     this.orderList = [];
     this.alreadySearched = true;
     this.loading = true;
-    this.hyperledger.queryOrderByUser().then((res: { orderList: OrderModel[] }) => {
+    this.hyperledger.queryOrderByUser().then((res: { orderList: {Key: string, Record: OrderModel}[] }) => {
       this.loading = false;
-      this.orderList = res.orderList;
+      this.orderList = res.orderList.map(item => item.Record);
     }).catch((res) => {
       this.loading = false;
       this.showErrorSnack();

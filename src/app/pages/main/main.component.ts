@@ -125,6 +125,10 @@ export class MainComponent implements OnInit {
    * Open a confirmation dialog with all the shopping cart info.
    */
   onConfirm() {
+    if (this.shoppingCart.items.length < 1) {
+      this.showErrorSnack('Your shopping cart is empty');
+      return;
+    }
     let dialogRef = this.openConfirmDialog();
     dialogRef.afterClosed().subscribe(orderConfirmed => {
       if (orderConfirmed) {
@@ -189,14 +193,14 @@ export class MainComponent implements OnInit {
     })
   }
 
-  showErrorSnack() {
+  showErrorSnack(message?: string) {
     this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       data: {
         success: false,
-        message: 'An error occurred',
+        message: message ? message : 'An error occurred',
         buttonMsg: 'Okay'
       }
     });

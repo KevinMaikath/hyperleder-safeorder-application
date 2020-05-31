@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
    * Submit the user credentials for authenticating through the AuthService.
    */
   async onSubmit() {
+    this.fixInputs();
     if (!this.isFormValid()) {
       this.showErrorSnack('Missing fields');
       return;
@@ -32,6 +33,16 @@ export class LoginComponent implements OnInit {
     const result = await this.authService.login(this.credentials);
     if (!result.success) {
       this.showErrorSnack(result.message);
+    }
+  }
+
+  fixInputs() {
+    if (this.credentials.username) {
+      this.credentials.username = this.credentials.username.trim();
+    }
+
+    if (this.credentials.password) {
+      this.credentials.password = this.credentials.password.trim();
     }
   }
 

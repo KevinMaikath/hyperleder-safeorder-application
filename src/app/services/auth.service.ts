@@ -53,11 +53,9 @@ export class AuthService {
    */
   async isAuthenticated(): Promise<boolean> {
     if (!this.currentUser) return false;
-    console.log('currentUser', this.currentUser);
-
-    const header = this.getAuthHeader();
 
     try {
+      const header = this.getAuthHeader();
       const res = await this.http.post(this.API_URL + '/checkToken', {}, {headers: header})
         .pipe(take(1))
         .toPromise();
@@ -79,6 +77,6 @@ export class AuthService {
    */
   getCurrentUserID(): string {
     return this.currentUser.ID;
-}
+  }
 
 }
