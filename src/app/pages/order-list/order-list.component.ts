@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderModel} from "../../models/order.model";
 import {Router} from "@angular/router";
-import {CartItemModel} from "../../models/cartItem.model";
 import {MatDialog} from "@angular/material/dialog";
 import {OrderInfoDialogComponent} from "../../components/order-info-dialog/order-info-dialog.component";
 import {HyperledgerService} from "../../services/hyperledger.service";

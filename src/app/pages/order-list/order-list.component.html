@@ -41,7 +41,11 @@
       <p>Please press the SEARCH button above</p>
     </div>
 
-    <div class="order-list" *ngIf="alreadySearched">
+    <div class="no-search-msg" *ngIf="alreadySearched && orderList.length < 1">
+      <p>Please press the SEARCH button above</p>
+    </div>
+
+    <div class="order-list" *ngIf="alreadySearched && orderList.length > 0">
       <div class="order-card" *ngFor="let order of orderList">
         <div class="card-header">
           ID: {{ order.ID }}
