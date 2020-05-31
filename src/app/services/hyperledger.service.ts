@@ -3,6 +3,7 @@ import {ShoppingCartModel} from "../models/shoppingCart.model";
 import {HttpClient} from "@angular/common/http";
 import {take} from "rxjs/operators";
 import {environment} from "../../environments/environment";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class HyperledgerService {
 
   API_URL = environment.api_url;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private auth: AuthService) {
   }
 
   /**
@@ -20,8 +22,12 @@ export class HyperledgerService {
    */
   async registerOrder(cart: ShoppingCartModel): Promise<Object> {
     const order = this.initializeOrder(cart);
+    const header = this.auth.getAuthHeader();
+    const userID = this.auth.getCurrentUserID();
 
-    return this.http.post(this.API_URL + '/registerOrder', {order}).pipe(take(1)).toPromise();
+    return this.http.post(this.API_URL + '/registerOrder', {order, userID}, {headers: header})
+      .pipe(take(1))
+      .toPromise();
   }
 
   /**
@@ -29,7 +35,12 @@ export class HyperledgerService {
    * (At the moment, the buyerID is fixed to 11111, but it should retrieve it from the AuthService in a future)
    */
   async queryOrderByUser() {
-    return this.http.post(this.API_URL + '/queryOrderByUser', {buyerID: '11111'}).pipe(take(1)).toPromise();
+    const header = this.auth.getAuthHeader();
+    const userID = this.auth.getCurrentUserID();
+
+    return this.http.post(this.API_URL + '/queryOrderByUser', {buyerID: userID}, {headers: header})
+      .pipe(take(1))
+      .toPromise();
   }
 
   /**

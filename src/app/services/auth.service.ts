@@ -55,7 +55,7 @@ export class AuthService {
     if (!this.currentUser) return false;
     console.log('currentUser', this.currentUser);
 
-    const header = new HttpHeaders().set('Authorization', `Bearer ${this.currentUser.token}`);
+    const header = this.getAuthHeader();
 
     try {
       const res = await this.http.post(this.API_URL + '/checkToken', {}, {headers: header})
@@ -66,5 +66,19 @@ export class AuthService {
       return false
     }
   }
+
+  /**
+   * Create an HTTP header with the authorization token
+   */
+  getAuthHeader(): HttpHeaders {
+    return new HttpHeaders().set('Authorization', `Bearer ${this.currentUser.token}`);
+  }
+
+  /**
+   * Return the ID from the currentUser
+   */
+  getCurrentUserID(): string {
+    return this.currentUser.ID;
+}
 
 }
