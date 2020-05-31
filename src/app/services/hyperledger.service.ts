@@ -23,16 +23,14 @@ export class HyperledgerService {
   async registerOrder(cart: ShoppingCartModel): Promise<Object> {
     const order = this.initializeOrder(cart);
     const header = this.auth.getAuthHeader();
-    const userID = this.auth.getCurrentUserID();
 
-    return this.http.post(this.API_URL + '/registerOrder', {order, userID}, {headers: header})
+    return this.http.post(this.API_URL + '/registerOrder', {order}, {headers: header})
       .pipe(take(1))
       .toPromise();
   }
 
   /**
    * Query for a list of orders in the ledger, given a buyerID.
-   * (At the moment, the buyerID is fixed to 11111, but it should retrieve it from the AuthService in a future)
    */
   async queryOrderByUser() {
     const header = this.auth.getAuthHeader();
@@ -49,7 +47,7 @@ export class HyperledgerService {
    */
   private initializeOrder(cart) {
     cart.ID = this.generateID();
-    cart.buyerID = '11111';
+    cart.buyerID = this.auth.getCurrentUserID();
     cart.shopID = '44444';
     cart.date = new Date().toUTCString();
     return cart;
