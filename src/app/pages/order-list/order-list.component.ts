@@ -53,7 +53,7 @@ export class OrderListComponent implements OnInit {
   }
 
   /**
-   * Search the current user orders through the HypereldgerService.
+   * Search the current user orders through the HyperledgerService.
    */
   onSearch() {
     this.orderList = [];

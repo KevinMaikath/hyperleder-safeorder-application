@@ -38,7 +38,7 @@ export class HyperledgerService {
     const header = this.auth.getAuthHeader();
     const userID = this.auth.getCurrentUserID();
 
-    return this.http.post(this.API_URL + '/queryOrderByBuyerID', {buyerID: userID}, {headers: header})
+    return this.http.post(this.API_URL + '/queryOrderByBuyerID', {userID}, {headers: header})
       .pipe(take(1))
       .toPromise();
   }
