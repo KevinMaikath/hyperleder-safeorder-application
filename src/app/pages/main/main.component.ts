@@ -190,19 +190,16 @@ export class MainComponent implements OnInit {
   }
 
   showErrorSnack() {
-    let snack = this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
+    this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'center',
       data: {
         success: false,
         message: 'An error occurred',
-        buttonMsg: 'Log'
+        buttonMsg: 'Okay'
       }
     });
-    snack.onAction().subscribe(() => {
-      console.log('ACTION');
-    })
   }
 
   logout() {

@@ -3,7 +3,6 @@ import {LoginCredentialsModel} from "../../models/loginCredentials.model";
 import {AuthService} from "../../services/auth.service";
 import {CustomSnackbarComponent} from "../../components/custom-snackbar/custom-snackbar.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -15,8 +14,7 @@ export class LoginComponent implements OnInit {
   credentials: LoginCredentialsModel;
 
   constructor(private authService: AuthService,
-              private matSnackBar: MatSnackBar,
-              private router: Router) {
+              private matSnackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -26,17 +24,23 @@ export class LoginComponent implements OnInit {
   /**
    * Submit the user credentials for authenticating through the AuthService.
    */
-  onSubmit() {
-    this.authService.login(this.credentials).then((res: { token: string }) => {
-      this.authService.saveToken(res.token);
-      this.router.navigateByUrl('');
-    }).catch(res => {
-      this.showErrorSnack(res.error.message);
-    });
+  async onSubmit() {
+    if (!this.isFormValid()) {
+      this.showErrorSnack('Missing fields');
+      return;
+    }
+    const result = await this.authService.login(this.credentials);
+    if (!result.success) {
+      this.showErrorSnack(result.message);
+    }
+  }
+
+  isFormValid(): boolean {
+    return !!this.credentials.username || !!this.credentials.password;
   }
 
   showErrorSnack(message: string) {
-    let snack = this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
+    this.matSnackBar.openFromComponent(CustomSnackbarComponent, {
       duration: 5000,
       verticalPosition: 'top',
       horizontalPosition: 'center',
