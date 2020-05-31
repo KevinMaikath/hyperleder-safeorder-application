@@ -141,8 +141,8 @@ export class MainComponent implements OnInit {
    * Register the shopping cart as an order through the HyperledgerService.
    */
   registerOrder() {
-    this.hyperledgerService.registerOrder(this.shoppingCart).then((res: { order: OrderModel }) => {
-      this.showSuccessSnack(res.order);
+    this.hyperledgerService.registerOrder(this.shoppingCart).then((res: OrderModel) => {
+      this.showSuccessSnack(res);
     }).catch(res => {
       this.showErrorSnack();
     });
